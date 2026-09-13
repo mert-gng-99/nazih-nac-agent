@@ -1,0 +1,129 @@
+{
+  "scenarios": 7,
+  "expectations_met": 7,
+  "total_cost_units": 41.0,
+  "cost_if_everything_called": 133.0,
+  "saved_pct": 69.2,
+  "camara_apis": [
+    "number-verification",
+    "location-verification",
+    "device-swap",
+    "sim-swap",
+    "device-status",
+    "congestion-insights",
+    "quality-on-demand"
+  ],
+  "tools": [
+    "verify_number",
+    "verify_location",
+    "check_device_swap",
+    "check_sim_swap",
+    "check_reachability",
+    "query_congestion",
+    "reserve_quality"
+  ],
+  "min_calls": 2,
+  "max_calls": 3,
+  "avg_calls": 2.3,
+  "levels_seen": [
+    "flag",
+    "note",
+    "valid",
+    "void"
+  ],
+  "per_scenario": [
+    {
+      "id": "session-start-clean",
+      "title": "A sitting starts normally",
+      "level": "valid",
+      "expected": "valid",
+      "met": true,
+      "calls": 3,
+      "spend": 11.0,
+      "apis": [
+        "number-verification",
+        "location-verification",
+        "qod"
+      ]
+    },
+    {
+      "id": "candidate-elsewhere",
+      "title": "The candidate is 38 km from the address they declared",
+      "level": "flag",
+      "expected": "flag",
+      "met": true,
+      "calls": 2,
+      "spend": 3.0,
+      "apis": [
+        "number-verification",
+        "location-verification"
+      ]
+    },
+    {
+      "id": "indoors-uncertain",
+      "title": "The network answers PARTIAL at the address",
+      "level": "note",
+      "expected": "note",
+      "met": true,
+      "calls": 3,
+      "spend": 11.0,
+      "apis": [
+        "number-verification",
+        "location-verification",
+        "qod"
+      ]
+    },
+    {
+      "id": "session-changed-hands",
+      "title": "Handset and SIM both changed mid-exam",
+      "level": "void",
+      "expected": "void",
+      "met": true,
+      "calls": 2,
+      "spend": 6.0,
+      "apis": [
+        "device-swap",
+        "sim-swap"
+      ]
+    },
+    {
+      "id": "phone-died-mid-exam",
+      "title": "Handset changed, SIM untouched",
+      "level": "flag",
+      "expected": "flag",
+      "met": true,
+      "calls": 2,
+      "spend": 6.0,
+      "apis": [
+        "device-swap",
+        "sim-swap"
+      ]
+    },
+    {
+      "id": "drop-congested-cell",
+      "title": "The session dropped and the cell is saturated",
+      "level": "note",
+      "expected": "note",
+      "met": true,
+      "calls": 2,
+      "spend": 2.0,
+      "apis": [
+        "device-status",
+        "congestion"
+      ]
+    },
+    {
+      "id": "drop-line-healthy",
+      "title": "The session died while the line was perfectly healthy",
+      "level": "flag",
+      "expected": "flag",
+      "met": true,
+      "calls": 2,
+      "spend": 2.0,
+      "apis": [
+        "device-status",
+        "congestion"
+      ]
+    }
+  ]
+}
